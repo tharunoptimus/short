@@ -1,0 +1,64 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        meta(name='description' content='Shorten Your URL effortlessly with ease')
+        meta(name='keywords' content='urlshortner, url, shortner, url shortner')
+        meta(name="theme-color" content="#317EFB")
+        link(rel="apple-touch-icon" href="/apple-touch-icon.png")
+        link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+        
+        link(rel="manifest", href="manifest.json")
+        
+        link(rel='stylesheet' type='text/css' href='/css/style.css')
+        title !{pageTitle}
+    body
+        .wrapper
+            .container#homeContainer
+                .logoContainer
+                    img(src='/images/logo.png', alt='logo', class="logoImage")
+                .subContent
+                    p Shorten your URL with ease
+                .inputContainer
+                    .inputFieldContainer
+                        input#urlField(type="url", name="urlField", class="urlField", placeholder="Enter the Link")
+                    .buttonContainer
+                        button#submitButton(type="submit", class="submitButton") Shorten
+            
+            .container#linkContainer
+                .logoContainer
+                    img(src='/images/logo.png', alt='logo', class="logoImage")
+                .success
+                    h3 Your shortened URL is:
+                .inputContainer
+                    .inputFieldContainer.finalLinkContainer
+                        input#shortenedUrlField(type="url", name="shortenedUrlField", class="urlField", value="", readonly="")
+                        button#copyButton.navigation.option
+                            svg(aria-hidden="true" focusable="false" data-prefix="far" data-icon="copy" class="svg-inline--fa fa-copy fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512")
+                                path(fill="currentColor" d="M433.941 65.941l-51.882-51.882A48 48 0 0 0 348.118 0H176c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48v-48h80c26.51 0 48-21.49 48-48V99.882a48 48 0 0 0-14.059-33.941zM266 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h74v224c0 26.51 21.49 48 48 48h96v42a6 6 0 0 1-6 6zm128-96H182a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h106v88c0 13.255 10.745 24 24 24h88v202a6 6 0 0 1-6 6zm6-256h-64V48h9.632c1.591 0 3.117.632 4.243 1.757l48.368 48.368a6 6 0 0 1 1.757 4.243V112z")
+                    .buttonContainer#qrGeneratorButton
+                        button(type="submit", class="submitButton generateQRButton") 
+                            span Generate QR
+                            svg(aria-hidden="true" focusable="false" data-prefix="fas" data-icon="qrcode" class="svg-inline--fa fa-qrcode fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512")
+                                path(fill="currentColor" d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z")
+                .qrHolder
+                    span The QR Code of the above link is:
+                    .qrContainer
+                        canvas#qr-code(align="center", class='qrcode')
+
+
+            div#copySuccessfulBanner Short URL copied to clipboard!
+
+            .topNavigation
+                button.navigation
+                    svg(aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-circle-left" class="svg-inline--fa fa-arrow-circle-left fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512")
+                        path(fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm28.9-143.6L209.4 288H392c13.3 0 24-10.7 24-24v-16c0-13.3-10.7-24-24-24H209.4l75.5-72.4c9.7-9.3 9.9-24.8.4-34.3l-11-10.9c-9.4-9.4-24.6-9.4-33.9 0L107.7 239c-9.4 9.4-9.4 24.6 0 33.9l132.7 132.7c9.4 9.4 24.6 9.4 33.9 0l11-10.9c9.5-9.5 9.3-25-.4-34.3z")
+                span Back
+
+                
+                        
+        script(src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js")
+        
+        script(src="js/common.js")
