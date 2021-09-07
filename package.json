@@ -1,22 +1,22 @@
 {
   "name": "short",
   "version": "1.0.0",
-  "description": "Shorten URLs",
+  "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
-  "keywords": [
-    "short",
-    "url"
-  ],
-  "author": "Tharunraj Optimus",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
   "dependencies": {
     "express": "^4.17.1",
-    "mongodb": "^4.0.0",
-    "mongoose": "^5.13.2",
+    "mongodb": "^4.1.1",
+    "mongoose": "^6.0.5",
     "pug": "^3.0.2"
   }
 }
