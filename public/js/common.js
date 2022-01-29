@@ -45,7 +45,7 @@ function generateQR(e) {
 		size: 200,
 		value: e,
 	}))
-	$("#qrGeneratorButton").fadeOut("slow")
+	$("#qrGeneratorButton").hide()
 }
 
 $("#urlField").keydown((e) => {
