@@ -1,44 +1,83 @@
-const CACHE_NAME = "version-1";
-const urlsToCache = [ 'home', 'offline.html' ];
+/**
+ * Unlike most Service Workers, this one always attempts to download assets
+ * from the network. Only when network access fails do we fallback to using
+ * the cache. When a request succeeds we always update the cache with the new
+ * version. If a request fails and the result isn't in the cache then we
+ * display an Offline page.
+ */
+const CACHE = "content-v1" // name of the current cache
+const OFFLINE = "/offline.html" // URL to offline HTML document
 
-const self = this;
+const AUTO_CACHE = [
+	// URLs of assets to immediately cache
+	OFFLINE,
+	"/",
+]
 
-// Install SW
-self.addEventListener('install', (event) => {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then((cache) => {
-                console.log('Opened cache');
+// Iterate AUTO_CACHE and add cache each entry
+self.addEventListener("install", (event) => {
+	event.waitUntil(
+		caches
+			.open(CACHE)
+			.then((cache) => cache.addAll(AUTO_CACHE))
+			.then(self.skipWaiting())
+	)
+})
 
-                return cache.addAll(urlsToCache);
-            })
-    )
-});
+// Destroy inapplicable caches
+self.addEventListener("activate", (event) => {
+	event.waitUntil(
+		caches
+			.keys()
+			.then((cacheNames) => {
+				return cacheNames.filter((cacheName) => CACHE !== cacheName)
+			})
+			.then((unusedCaches) => {
+				console.log("DESTROYING CACHE", unusedCaches.join(","))
+				return Promise.all(
+					unusedCaches.map((unusedCache) => {
+						return caches.delete(unusedCache)
+					})
+				)
+			})
+			.then(() => self.clients.claim())
+	)
+})
 
-// Listen for requests
-self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(() => {
-                return fetch(event.request) 
-                    .catch(() => caches.match('offline.html'))
-            })
-    )
-});
+self.addEventListener("fetch", (event) => {
+	if (
+		!event.request.url.startsWith(self.location.origin) ||
+		event.request.method !== "GET"
+	) {
+		// External request, or POST, ignore
+		return void event.respondWith(fetch(event.request))
+	}
 
-// Activate the SW
-self.addEventListener('activate', (event) => {
-    const cacheWhitelist = [];
-    cacheWhitelist.push(CACHE_NAME);
+	event.respondWith(
+		// Always try to download from server first
 
-    event.waitUntil(
-        caches.keys().then((cacheNames) => Promise.all(
-            cacheNames.map((cacheName) => {
-                if(!cacheWhitelist.includes(cacheName)) {
-                    return caches.delete(cacheName);
-                }
-            })
-        ))
-            
-    )
-});
+        caches.match(event.request).then((response) => {
+            if (response) {
+                return response
+            }
+
+            if(navigator.onLine) {
+                return fetch(event.request)
+                .then((response) => {
+                    caches.open(CACHE).then((cache) => {
+                        cache.put(event.request, response)
+                    })
+
+                    return response.clone()
+                })
+            } else {
+                return caches.open(CACHE).then((cache) => {
+                    let offlineResponse = cache.match(OFFLINE)
+                    return cache.match(offlineResponse)
+                })
+            }
+        })
+
+
+	)
+})
