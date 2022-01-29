@@ -5,6 +5,13 @@
 * Browsers: last 4 version
 */
 
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 @font-face {
 	font-family: "Inter";
 	src: url(/css/Inter.woff) format("truetype");
@@ -74,7 +81,8 @@
 	width: 50%;
 }
 .inputFieldContainer {
-	width: 100%;
+    width: 100%;
+    max-width: 450px;
 }
 .urlField {
 	width: 100%;
@@ -177,6 +185,15 @@
 		top: 0;
 		opacity: 0;
 	}
+}
+@-webkit-keyframes hue {
+    from {
+        -webkit-filter: hue-rotate(0)
+    }
+
+    to {
+        -webkit-filter: hue-rotate(-360deg)
+    }
 }
 @keyframes hue {
     from {
@@ -303,6 +320,11 @@
 	.urlField {
 		width: 94%;
 	}
+    .inputFieldContainer {
+        width: 100%;
+        max-width: auto;
+        min-width: auto;
+    }
 	.inputContainer {
 		width: 94%;
 	}
