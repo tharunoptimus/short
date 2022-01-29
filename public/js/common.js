@@ -73,6 +73,7 @@ $(document).on("click", ".topNavigation", (e) => {
 	$("#homeContainer").hide()
 	$("#homeContainer").fadeIn("slow")
 	$(".topNavigation").fadeOut("slow")
+	$("#qrGeneratorButton").fadeIn("slow")
 })
 
 $(document).on("click", ".generateQRButton", () => {
