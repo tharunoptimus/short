@@ -24,7 +24,7 @@ function shorteningSuccessful() {
 }
 
 function isRealUrl(e) {
-	return  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(e)
+	return  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=\/]{1,256}/.test(e)
 }
 
 function showCopySuccessfulBanner() {
