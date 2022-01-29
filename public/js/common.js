@@ -3,10 +3,10 @@ async function userEnteredURL() {
 	let e = $("#urlField").val()
 	isRealUrl(e)
 		? await $.post("/api/links", { content: e }, (data, n, o) => {
-                console.log(data)
-				$("#shortenedUrlField").val(data.link),
-					shorteningSuccessful(),
-					(url = data.link)
+				$("#shortenedUrlField").val(data.link)
+				shorteningSuccessful()
+				url = data.link
+				document.querySelector("#shortenedUrlField").scrollLeft = document.querySelector("#shortenedUrlField").scrollWidth
 		  })
 		: alert("Your URL is invalid!")
 }
