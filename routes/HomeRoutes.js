@@ -7,7 +7,7 @@ app.use(express.json());
 
 router.get("/", (req, res, next) => {
 	var payload = {
-		pageTitle: "Home",
+		pageTitle: "Short!",
 	};
 	res.status(200).render("home", payload);
 });
