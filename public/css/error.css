@@ -1,25 +1,38 @@
-@font-face {
-    font-family: "sans";
-    src: url(/css/sans.ttf) format("truetype");
-}
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
 
+@font-face {
+	font-family: "Inter";
+	src: url(/css/Inter.woff) format("truetype");
+}
+* {
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+		"Helvetica Neue", sans-serif;
+	color: #545454;
+	font-weight: 400;
+}
 html,
 body {
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	background-color: #f2eee8;
-	font-family: 'sans', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif, Arial;
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
-
 *,
 *:before,
 *:after {
+	-webkit-box-sizing: content-box;
 	box-sizing: content-box;
+	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 }
 
@@ -35,6 +48,8 @@ a {
 @media screen and (max-width: 400px) {
 	.face {
 		margin-top: 40px;
+		-webkit-transform: scale(0.8);
+		-ms-transform: scale(0.8);
 		transform: scale(0.8);
 	}
 }
@@ -156,19 +171,24 @@ h1 {
 }
 
 .btn {
-	font-weight: 400;
-	padding: 20px;
-	background-color: #1fa2f1;
+	margin: 0;
+	padding: 0 3.5rem;
+	height: 2.81rem;
+	line-height: 2.8rem;
+	border-radius: 7px;
+	background-color: #0070f3;
+	-webkit-box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+	box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
 	color: white;
-	width: 320px;
+	outline: none;
+	border: none;
+	font-size: 1.3rem;
+	cursor: pointer;
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
+	width: fit-content;
 	margin: 0 auto;
 	text-align: center;
-	font-size: 1.2em;
-	border-radius: 10px;
-	cursor: pointer;
-	margin-top: 80px;
-	margin-bottom: 50px;
-	transition: all 0.2s linear;
 }
 @media screen and (max-width: 400px) {
 	.btn {
@@ -179,6 +199,7 @@ h1 {
 	}
 }
 .btn:hover {
-	background-color: hsl(203, 88%, 53%);
-	transition: all 0.2s linear;
+	background: rgba(0, 118, 255, 0.9);
+	-webkit-box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+	box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
 }
